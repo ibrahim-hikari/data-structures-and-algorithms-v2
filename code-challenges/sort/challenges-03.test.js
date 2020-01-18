@@ -6,12 +6,11 @@ CHALLENGE 1
 Write a function named sortBackwards that takes in an array of numbers and returns the same array, with the numbers sorted, highest to smallest.
 ------------------------------------------------------------------------------------------------ */
 
-const sortBackwards = (arr) => {
-    arr.sort((a, b) => {
-        return a < b;
-    });
-    return arr
+
+const sortBackwards = arr => {
+    return arr.sort((a, b) => b - a);
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
@@ -47,11 +46,8 @@ CHALLENGE 3
 Write a function named sortByLength that takes in an array of strings and returns the same array, with the strings sorted by their length, lowest to highest.
 ------------------------------------------------------------------------------------------------ */
 
-const sortByLength = (arr) => {
-    arr.sort((a, b) => {
-        return a.length > b.length;
-    })
-    return arr
+const sortByLength = arr => {
+    return arr.sort((a, b) => a.length - b.length);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -89,11 +85,8 @@ Here is an example of the input:
 ];
 ------------------------------------------------------------------------------------------------ */
 
-const sortByPrice = (arr) => {
-    arr.sort((a, b) => {
-        return a.price > b.price
-    })
-    return arr;
+const sortByPrice = arr => {
+    return arr.sort((a, b) => a.price - b.price);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -104,12 +97,10 @@ Write a function named sortNumbersByLength that takes in an array of numbers and
 For example, [1, 14, 0.2, -281, 54782] is only correctly sorted in that order.
 ------------------------------------------------------------------------------------------------ */
 
-const sortNumbersByLength = (arr) => {
-    arr.sort((a, b) => {
-        return (a.toString()).length > (b.toString()).length;
-    })
-    return arr;
+const sortNumbersByLength = arr => {
+    return arr.sort((a, b) => String(a).length - String(b).length);
 };
+
 
 /*-----------------------------------------------------------------------------------------------
 CHALLENGE 7
@@ -129,11 +120,14 @@ const people = [
     new Person('Stan', 'Seattle', 67),
 ];
 
-const sortPeople = (arr) => {
-    arr.sort((a, b) => {
-        return a.lastName > b.lastName
-    })
-    return arr;
+const sortPeople = arr => {
+    return arr.sort((a, b) => {
+        if (a.lastName < b.lastName) {
+            return -1
+        } else {
+            return 1
+        }
+    });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -149,11 +143,23 @@ If two people have the same full name, the younger one should come first. Do not
 const sortPeopleBetter = (arr) => {
     arr.sort((a, b) => {
         if (a.lastName != b.lastName) {
-            return a.lastName > b.lastName
+            if (a.lastName > b.lastName) {
+                return 1
+            } else {
+                return -1
+            }
         } else if (a.firstName != b.firstName) {
-            return a.firstName > b.firstName
+            if (a.firstName > b.firstName) {
+                return 1
+            } else {
+                return -1
+            }
         } else {
-            return a.age > b.age
+            if (a.age > b.age) {
+                return 1
+            } else {
+                return -1
+            }
         }
     })
     return arr
